@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fet! — Començar tasca</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="FET.css">
+  <style>
+    .run-container { max-width:900px; margin:28px auto; padding:24px; display:grid; gap:18px; }
+    .run-card { background:#fff; padding:18px; border-radius:12px; box-shadow:0 6px 20px rgba(15,20,36,0.06); }
+    .timer-big { font-size:4.2rem; font-weight:700; text-align:center; margin:8px 0; letter-spacing: -0.02em; }
+    .timer-sub { text-align:center; color:#6b7280; margin-bottom:12px; }
+    .controls { display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap; }
+    .ctrl-btn { min-width:140px; padding:12px 18px; border-radius:12px; border:none; cursor:pointer; font-weight:700; }
+    .ctrl-start { background:linear-gradient(90deg,#ff7a59,#ff5636); color:#fff; }
+    .ctrl-pause { background:#f3f4f6; color:#111; }
+    .ctrl-stop { background:#ef4444; color:#fff; }
+    .mode-pill { display:inline-block; padding:6px 10px; border-radius:999px; background:#f3f4f6; font-weight:600; }
+    .meta { display:flex; gap:12px; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+    .small { color:#6b7280; font-size:0.95rem; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left"><a href="index.html"><img id="logo" src="img/logo.png" alt="Fet logo"></a></div>
+    <div class="header-center"><h1 id="titulo">Fet!</h1></div>
+    <div class="header-right">
+      <nav class="main-nav" aria-label="Navegació principal">
+        <ul>
+          <li><a href="./tasques.html">Tasques</a></li>
+        </ul>
+      </nav>
+
+      <button id="menu" aria-label="Obrir menú">
+        <img id="icono" src="img/icono.png" alt="menu">
+      </button>
+    </div>
+  </header>
+
+    
+    <div id="mobile-overlay" class="mobile-overlay" aria-hidden="true"></div>
+
+    <aside id="mobile-drawer" class="mobile-drawer"
+          role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="mobile-drawer-inner">
+
+        <div class="mobile-drawer-header">
+          <img id="drawer-logo" src="img/logo.png" alt="Fet logo" />
+          <button id="mobile-close" class="mobile-close"
+                  aria-label="Tancar menú">✕</button>
+        </div>
+
+        <nav class="mobile-nav" aria-label="Navegació principal (mòbil)">
+          
+        </nav>
+      </div>
+    </aside>
+
+  <main class="run-container">
+    <section class="run-card" id="task-info">
+      <h2 id="task-title">Carregant...</h2>
+      <p id="task-desc" class="small" style="margin-top:6px;">&nbsp;</p>
+      <div class="meta" style="margin-top:12px;">
+        <div><span class="mode-pill" id="task-method">—</span></div>
+        <div class="small">Durada planificada: <strong id="task-duration">0</strong> min</div>
+        <div class="small">Data: <strong id="task-due">—</strong></div>
+      </div>
+    </section>
+
+    <section class="run-card" aria-live="polite">
+      <div style="text-align:center;">
+        <div id="phase-label" class="timer-sub">Preparat</div>
+        <div id="timer" class="timer-big">00:00</div>
+        <div class="timer-sub">Temps transcorregut: <span id="elapsed">0</span> min</div>
+      </div>
+
+      <div class="controls" style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap;">
+        <button id="start-btn" type="button" class="boton-elegante">Start</button>
+        <button id="pause-btn" type="button" class="boton-elegante" disabled>Pause</button>
+        <button id="stop-btn" type="button" class="boton-elegante" disabled>Acabar</button>
+        <button id="mark-done" type="button" class="boton-elegante success" style="min-width:140px;">Marcar com a fet</button>
+        <button id="stop-alarm" type="button" class="boton-elegante ghost" style="min-width:110px;">🔕 Aturar alarma</button>
+      </div>
+
+
+      <div style="text-align:center; margin-top:12px;" class="small">
+        <span id="cycles-info">—</span>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./task-run.js"></script>
+  <script type="module" src="./mobil-menu.js"></script>
+</body>
+</html>

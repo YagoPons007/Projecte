@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fet! — Login</title>
+  <link rel="stylesheet" href="FET.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <a href="index.html"><img id="logo" src="img/logo.png" alt="Fet logo"></a>
+    </div>
+  
+    <div class="header-center">
+      <h1 id="titulo">Fet!</h1>
+    </div>
+  
+    <div class="header-right">
+      <nav class="main-nav" aria-label="Navegació principal">
+        <ul>
+          <li><a href="./index.html">Inici</a></li>
+          <li><a href="./tasques.html">Tasques</a></li>
+          <li><a href="./agenda.html">Agenda</a></li>
+          <li><a href="./metodes.html">Mètodes d'estudi</a></li>
+          <li><a href="./stats.html">Estadístiques</a></li>
+          <li><a href="./perfil.html">Perfil</a></li>
+        </ul>
+      </nav>
+  
+      <button id="menu" aria-label="Obrir menú" aria-expanded="false">
+        <img id="icono" src="img/icono.png" alt="menu">
+      </button>
+    </div>
+  </header>
+  
+
+    
+    <div id="mobile-overlay" class="mobile-overlay" aria-hidden="true"></div>
+
+    <aside id="mobile-drawer" class="mobile-drawer"
+          role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="mobile-drawer-inner">
+
+        <div class="mobile-drawer-header">
+          <img id="drawer-logo" src="img/logo.png" alt="Fet logo" />
+          <button id="mobile-close" class="mobile-close"
+                  aria-label="Tancar menú">✕</button>
+        </div>
+
+        <nav class="mobile-nav" aria-label="Navegació principal (mòbil)">
+          
+        </nav>
+      </div>
+    </aside>
+
+  <main class="container">
+    <section class="card" style="max-width: 400px; margin:auto;">
+      <h2>Entrar o crear compte</h2>
+      <form id="auth-form">
+        <label class="label" for="email">Correu electrònic</label>
+        <input class="input" id="email" type="email" placeholder="exemple@correu.com" required>
+
+        <label class="label" for="password">Contrasenya</label>
+        <input class="input" id="password" type="password" placeholder="••••••••" required>
+
+        <div style="margin-top:12px;">
+          <button class="fbtn" type="button" id="signup-btn">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front">Crear compte</span>
+          </button>
+          <button class="fbtn" type="button" id="login-btn">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front">Entrar</span>
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="footer-left">
+      <img id="logo" src="img/logo.png" alt="Fet logo peu">
+    </div>
+    <div class="footer-center">
+      <p>© Tots els drets reservats</p>
+    </div>
+
+    <div class="footer-right">
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><img src="img/Instagram_icon.png" alt="Instagram"></a>
+            <a href="https://www.twitter.com" target="_blank" aria-label="X"><img src="img/X_icon.svg.png" alt="X"></a>
+            <a href="https://www.telegram.org" target="_blank" aria-label="Telegram"><img src="img/Telegram_logo.svg.webp" alt="Telegram"></a>
+    </div>
+    
+  </footer>
+
+  <script type="module">
+  import { signUp, signIn, auth, onAuthStateChanged } from './firebase-client.js';
+
+   
+  onAuthStateChanged(auth, (user) => {
+    if (user) window.location.href = 'index.html';
+  });
+
+  document.getElementById('signup-btn').addEventListener('click', async () => {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    try {
+      await signUp(email, password);
+      alert('Compte creat! Redirigint...');
+      window.location.href = 'index.html';
+    } catch (err) {
+      alert('Error creant compte: ' + err.message);
+    }
+  });
+
+  document.getElementById('login-btn').addEventListener('click', async () => {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    try {
+      await signIn(email, password);
+      alert('Benvingut! Redirigint...');
+      window.location.href = 'index.html';
+    } catch (err) {
+      alert('Error entrant: ' + err.message);
+    }
+  });
+</script> 
+<script type="module" src="./adaptive-nav.js"></script>
+<script type="module" src="./mobil-menu.js"></script>
+</body>
+</html>

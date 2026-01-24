@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fet! - Mètodes d'estudi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="FET.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <a href="index.html"><img id="logo" src="img/logo.png" alt="Fet logo"></a>
+    </div>
+  
+    <div class="header-center">
+      <h1 id="titulo">Fet!</h1>
+    </div>
+  
+    <div class="header-right">
+      <nav class="main-nav" aria-label="Navegació principal">
+        <ul>
+          <li><a href="./index.html">Inici</a></li>
+          <li><a href="./tasques.html">Tasques</a></li>
+          <li><a href="./agenda.html">Agenda</a></li>
+          <li><a href="./metodes.html">Mètodes d'estudi</a></li>
+          <li><a href="./stats.html">Estadístiques</a></li>
+          <li><a href="./perfil.html">Perfil</a></li>
+        </ul>
+      </nav>
+  
+      <button id="menu" aria-label="Obrir menú" aria-expanded="false">
+        <img id="icono" src="img/icono.png" alt="menu">
+      </button>
+    </div>
+  </header>
+  
+
+    
+    <div id="mobile-overlay" class="mobile-overlay" aria-hidden="true"></div>
+
+    <aside id="mobile-drawer" class="mobile-drawer"
+          role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="mobile-drawer-inner">
+
+        <div class="mobile-drawer-header">
+          <img id="drawer-logo" src="img/logo.png" alt="Fet logo" />
+          <button id="mobile-close" class="mobile-close"
+                  aria-label="Tancar menú">✕</button>
+        </div>
+
+        <nav class="mobile-nav" aria-label="Navegació principal (mòbil)">
+          
+        </nav>
+      </div>
+    </aside>
+
+  <main class="container">
+    <div class="page-subtitle" role="note" aria-hidden="false">
+      <p class="page-tagline">Mètodes d'estudi</p>
+    </div>
+    <section class="card">
+      <h2>Mètode Pomodoro</h2>
+      <p>
+        El mètode Pomodoro divideix el treball en intervals (normalment 25 minuts) seguits per breus pauses.
+        És útil per millorar la concentració i evitar la fatiga. Prova sessions de 25/5 o 50/10 segons la teva preferència.
+      </p>
+      <a class="btn" href="./tasques.html?method=pomodoro">Utilitzar Pomodoro</a>
+    </section>
+
+    <section class="card">
+      <h2>SRS - Repàs espaiat</h2>
+      <p>
+        El repàs espaiat (Spaced Repetition) ajuda a consolidar la memòria programant revisions creixents en el temps.
+        És especialment útil per a aprenentatge de vocabulari o conceptes teòrics.
+      </p>
+      <a class="btn" href="./tasques.html?method=srs">Marcar per repassar</a>
+    </section>
+
+    <section class="card">
+      <h2>Sessions llargues</h2>
+      <p>
+        Per projectes que requereixen concentració prolongada, configura sessions de 45 o 90 minuts amb pauses més llargues.
+      </p>
+      <a class="btn" href="./tasques.html?method=long">Començar sessió</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <img id="logo" src="img/logo.png" alt="Fet logo peu">
+    </div>
+    <div class="footer-center">
+      <p>© Tots els drets reservats</p>
+    </div>
+
+    <div class="footer-right">
+      <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><img src="img/Instagram_icon.png" alt="Instagram"></a>
+      <a href="https://www.twitter.com" target="_blank" aria-label="X"><img src="img/X_icon.svg.png" alt="X"></a>
+      <a href="https://www.telegram.org" target="_blank" aria-label="Telegram"><img src="img/Telegram_logo.svg.webp" alt="Telegram"></a>
+    </div>
+  </footer>
+  <script type="module" src="./adaptive-nav.js"></script>
+  <script type="module" src="./mobil-menu.js"></script>
+</body>
+</html>

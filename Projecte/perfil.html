@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fet! - Perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="FET.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <a href="index.html"><img id="logo" src="img/logo.png" alt="Fet logo"></a>
+    </div>
+  
+    <div class="header-center">
+      <h1 id="titulo">Fet!</h1>
+    </div>
+  
+    <div class="header-right">
+      <nav class="main-nav" aria-label="Navegació principal">
+        <ul>
+          <li><a href="./index.html">Inici</a></li>
+          <li><a href="./tasques.html">Tasques</a></li>
+          <li><a href="./agenda.html">Agenda</a></li>
+          <li><a href="./metodes.html">Mètodes d'estudi</a></li>
+          <li><a href="./stats.html">Estadístiques</a></li>
+          <li><a href="./perfil.html">Perfil</a></li>
+        </ul>
+      </nav>
+  
+      <button id="menu" aria-label="Obrir menú" aria-expanded="false">
+        <img id="icono" src="img/icono.png" alt="menu">
+      </button>
+
+      <button id="logout-btn" class="Btn" aria-label="Tancar sessió" title="Tancar sessió" style="display:none;">
+        <span class="sign" aria-hidden="true">
+          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/>
+          </svg>
+        </span>
+        <span class="text">Tancar sessió</span>
+      </button>
+    </div>
+  </header>
+    
+    <div id="mobile-overlay" class="mobile-overlay" aria-hidden="true"></div>
+
+    <aside id="mobile-drawer" class="mobile-drawer" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="mobile-drawer-inner">
+
+        <div class="mobile-drawer-header">
+          <img id="drawer-logo" src="img/logo.png" alt="Fet logo" />
+          <button id="mobile-close" class="mobile-close" aria-label="Tancar menú">✕</button>
+        </div>
+
+        <nav class="mobile-nav" aria-label="Navegació principal (mòbil)">
+        </nav>
+
+        <div class="mobile-drawer-footer">
+          <button id="mobile-logout-btn" class="boton-elegante ghost" style="width:100%; box-sizing:border-box;">
+            Tancar sessió
+          </button>
+        </div>
+
+      </div>
+    </aside>
+
+
+  <main class="container">
+    <div class="page-subtitle" role="note" aria-hidden="false">
+      <p class="page-tagline">El meu perfil</p>
+    </div>
+    <section class="card profile-card" style="max-width:720px; margin:auto;">
+      <h2>Les meves dades</h2>
+
+      <form id="profile-form" class="profile-form" novalidate>
+        <div class="form-grid">
+          <div class="input-group">
+            <label class="label" for="name">Nom i cognoms</label>
+            <input id="name" class="input" type="text" placeholder="Ex. Yago Pons" />
+          </div>
+
+          <div class="input-group">
+            <label class="label" for="weekly_target">Objectiu setmanal (min)</label>
+            <input id="weekly_target" class="input" type="number" min="0" placeholder="Ex. 300" />
+          </div>
+
+          <div class="input-group">
+            <label class="label" for="profession">Professió / Estudis</label>
+            <input id="profession" class="input" type="text" placeholder="Estudiant / Treballador" />
+          </div>
+
+        <div class="form-actions">
+          <button type="submit" class="fbtn" aria-label="Guardar configuració">
+            <span class="shadow" aria-hidden="true"></span>
+            <span class="edge" aria-hidden="true"></span>
+            <span class="front">Guardar</span>
+          </button>
+
+          <button type="reset" class="fbtn" aria-label="Restaurar">
+            <span class="shadow" aria-hidden="true"></span>
+            <span class="edge" aria-hidden="true"></span>
+            <span class="front">Restaurar</span>
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <img id="logo" src="img/logo.png" alt="Fet logo peu">
+    </div>
+    <div class="footer-center">
+      <p>© Tots els drets reservats</p>
+    </div>
+
+    <div class="footer-right">
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><img src="img/Instagram_icon.png" alt="Instagram"></a>
+            <a href="https://www.twitter.com" target="_blank" aria-label="X"><img src="img/X_icon.svg.png" alt="X"></a>
+            <a href="https://www.telegram.org" target="_blank" aria-label="Telegram"><img src="img/Telegram_logo.svg.webp" alt="Telegram"></a>
+    </div>
+    
+  </footer>
+  <script type="module" src="firebase-client.js"></script>
+  <script type="module">
+    import { setupProfileForm } from './firebase-client.js';
+    setupProfileForm();
+  </script>
+  <script type="module" src="./firebase-client.js"></script>
+  <script type="module" src="./logout.js"></script>
+  <script type="module" src="./auth-guard.js"></script>
+  <script type="module" src="./adaptive-nav.js"></script>
+  <script type="module" src="./mobil-menu.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileBtn = document.getElementById('mobile-logout-btn');
+      const desktopBtn = document.getElementById('logout-btn');
+  
+      if (!mobileBtn) return;
+  
+      mobileBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (desktopBtn) {
+          desktopBtn.click();
+          return;
+        }
+  
+        if (typeof doSignOut === 'function') {
+          doSignOut();
+          return;
+        }
+  
+        document.body.dispatchEvent(new CustomEvent('request-logout'));
+      });
+    });
+  </script>
+  
+</body>
+</html>

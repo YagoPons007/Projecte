@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fet!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="FET.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <a href="index.html"><img id="logo" src="img/logo.png" alt="Fet logo"></a>
+    </div>
+  
+    <div class="header-center">
+      <h1 id="titulo">Fet!</h1>
+    </div>
+  
+    <div class="header-right">
+      <nav class="main-nav" aria-label="Navegació principal">
+        <ul>
+          <li><a href="./index.html">Inici</a></li>
+          <li><a href="./tasques.html">Tasques</a></li>
+          <li><a href="./agenda.html">Agenda</a></li>
+          <li><a href="./metodes.html">Mètodes d'estudi</a></li>
+          <li><a href="./stats.html">Estadístiques</a></li>
+          <li><a href="./perfil.html">Perfil</a></li>
+        </ul>
+      </nav>
+  
+      <button id="menu" aria-label="Obrir menú" aria-expanded="false">
+        <img id="icono" src="img/icono.png" alt="menu">
+      </button>
+    </div>
+  </header>
+  
+
+    
+    <div id="mobile-overlay" class="mobile-overlay" aria-hidden="true"></div>
+
+    <aside id="mobile-drawer" class="mobile-drawer"
+          role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="mobile-drawer-inner">
+
+        <div class="mobile-drawer-header">
+          <img id="drawer-logo" src="img/logo.png" alt="Fet logo" />
+          <button id="mobile-close" class="mobile-close"
+                  aria-label="Tancar menú">✕</button>
+        </div>
+
+        <nav class="mobile-nav" aria-label="Navegació principal (mòbil)">
+          
+        </nav>
+      </div>
+    </aside>
+
+    <main class="container">
+        <section id="inici" class="card banner">
+            <div class="conte">
+                <h2>Benvingut a Fet!</h2>
+                <p>
+                    La proposta d'aquest projecte és oferir un gestor de tasques senzill i visual per ajudar
+                    estudiants i persones amb moltes responsabilitats a organitzar el seu temps. Pots crear,
+                    editar i marcar tasques, triar mètodes d'estudi i consultar estadístiques setmanals per
+                    detectar punts de millora.
+                </p>
+                <button type="submit" class="fbtn" aria-label="Guardar configuració">
+                    <span class="shadow" aria-hidden="true"></span>
+                    <span class="edge" aria-hidden="true"></span>
+                    <span class="front"><a href="tasques.html"> Comença ara</a></span>
+                </button>
+            </div>
+
+            <div class="imatge" role="img" aria-label="Il·lustració organització">
+                <img src="img/banner.png" alt="Il·lustració de productivitat">
+            </div>
+        </section>
+
+        <section id="funcions" class="features">
+            <article class="card">
+                <h3>Gestió de tasques</h3>
+                <p>Afegir tasques amb títol, descripció, data de venciment i durada estimada. Marca-les com a fetes amb un clic.</p>
+            </article>
+
+            <article class="card">
+                <h3>Mètodes d'estudi</h3>
+                <p>Selecciona entre diferents modes (Pomodoro, sessions llargues, SRS) per adaptar l'estudi al teu ritme.</p>
+            </article>
+
+            <article class="card">
+                <h3>Estadístiques</h3>
+                <p>Consulta un resum setmanal amb tasques completades, minuts dedicats i recomanacions per millorar.</p>
+            </article>
+        </section>
+
+        <section id="about" class="card about">
+            <h3>Àmbit i tecnologia</h3>
+            <p>
+                Inicialment la plataforma està pensada per a usuaris a l'àmbit nacional (Espanya) i es desenvoluparà
+                amb HTML, CSS i JavaScript. En futures versions s'afegirà suport d'idiomes i sincronització entre
+                dispositius si s'avança cap a una versió global.
+            </p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-left">
+            <img id="logo" src="img/logo.png" alt="Fet logo peu">
+        </div>
+
+        <div class="footer-center">
+            <p>© Tots els drets reservats</p>
+        </div>
+
+        <div class="footer-right">
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><img src="img/Instagram_icon.png" alt="Instagram"></a>
+            <a href="https://www.twitter.com" target="_blank" aria-label="X"><img src="img/X_icon.svg.png" alt="X"></a>
+            <a href="https://www.telegram.org" target="_blank" aria-label="Telegram"><img src="img/Telegram_logo.svg.webp" alt="Telegram"></a>
+        </div>
+    </footer>
+    <script type="module" src="./adaptive-nav.js"></script>
+    <script type="module" src="./mobil-menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fet! - Tasques</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="FET.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <a href="index.html"><img id="logo" src="img/logo.png" alt="Fet logo"></a>
+    </div>
+  
+    <div class="header-center">
+      <h1 id="titulo">Fet!</h1>
+    </div>
+  
+    <div class="header-right">
+      <nav class="main-nav" aria-label="Navegació principal">
+        <ul>
+          <li><a href="./index.html">Inici</a></li>
+          <li><a href="./tasques.html">Tasques</a></li>
+          <li><a href="./agenda.html">Agenda</a></li>
+          <li><a href="./metodes.html">Mètodes d'estudi</a></li>
+          <li><a href="./stats.html">Estadístiques</a></li>
+          <li><a href="./perfil.html">Perfil</a></li>
+        </ul>
+      </nav>
+  
+      <button id="menu" aria-label="Obrir menú" aria-expanded="false">
+        <img id="icono" src="img/icono.png" alt="menu">
+      </button>
+    </div>
+  </header>
+  
+
+    
+    <div id="mobile-overlay" class="mobile-overlay" aria-hidden="true"></div>
+
+    <aside id="mobile-drawer" class="mobile-drawer"
+          role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="mobile-drawer-inner">
+
+        <div class="mobile-drawer-header">
+          <img id="drawer-logo" src="img/logo.png" alt="Fet logo" />
+          <button id="mobile-close" class="mobile-close"
+                  aria-label="Tancar menú">✕</button>
+        </div>
+
+        <nav class="mobile-nav" aria-label="Navegació principal (mòbil)">
+          
+        </nav>
+      </div>
+    </aside>
+
+  <main class="container">
+    <div class="page-subtitle" role="note" aria-hidden="false">
+      <p class="page-tagline">Tasques</p>
+    </div>
+    <section class="card task-card" style="max-width:900px; margin:auto;">
+      <h2>Crear tasca</h2>
+
+      <form id="task-form" class="profile-form" novalidate>
+        <div class="form-grid">
+          <div class="input-group fullwidth">
+            <label class="label" for="task-title">Títol</label>
+            <input id="task-title" class="input" type="text" placeholder="Ex. Estudiar matemàtiques" required />
+          </div>
+
+          <div class="input-group">
+            <label class="label" for="task-due">Data de venciment</label>
+            <input id="task-due" class="input" type="date" />
+          </div>
+
+          <div class="input-group">
+            <label class="label" for="task-duration">Durada estimada (min)</label>
+            <input id="task-duration" class="input" type="number" min="0" placeholder="25" />
+          </div>
+
+          <div class="input-group fullwidth">
+            <label class="label" for="task-desc">Descripció</label>
+            <textarea id="task-desc" class="input textarea" rows="4" placeholder="Detalls, passos, enllaços..."></textarea>
+          </div>
+
+          <input id="task-method" name="method" type="hidden" value="">
+
+          <div class="method-fields method-pomodoro fullwidth" style="display:none; margin-top:6px;">
+            <h4 style="margin:8px 0 6px 0;">Configuració Pomodoro</h4>
+            <div class="input-group">
+              <label class="label" for="pomodoro_length">Durada Pomodoro (min)</label>
+              <input id="pomodoro_length" class="input" type="number" min="1" value="25" />
+            </div>
+            <div class="input-group">
+              <label class="label" for="short_break">Pausa curta (min)</label>
+              <input id="short_break" class="input" type="number" min="1" value="5" />
+            </div>
+            <div class="input-group">
+              <label class="label" for="long_break">Pausa llarga (min)</label>
+              <input id="long_break" class="input" type="number" min="1" value="15" />
+            </div>
+          </div>
+
+          <div class="method-fields method-srs fullwidth" style="display:none; margin-top:6px;">
+            <h4 style="margin:8px 0 6px 0;">Configuració SRS (repàs espaiat)</h4>
+            <div class="input-group">
+              <label class="label" for="srs_interval">Interval inicial (dies)</label>
+              <input id="srs_interval" class="input" type="number" min="1" value="1" />
+            </div>
+            <div class="input-group">
+              <label class="label" for="srs_reps">Repeticions desitjades</label>
+              <input id="srs_reps" class="input" type="number" min="1" value="5" />
+            </div>
+          </div>
+
+          <div class="method-fields method-long fullwidth" style="display:none; margin-top:6px;">
+            <h4 style="margin:8px 0 6px 0;">Configuració Sessions llargues</h4>
+            <div class="input-group">
+              <label class="label" for="session_length">Durada sessió (min)</label>
+              <input id="session_length" class="input" type="number" min="1" value="90" />
+            </div>
+            <div class="input-group">
+              <label class="label" for="long_break_after">Pausa després (min)</label>
+              <input id="long_break_after" class="input" type="number" min="0" value="15" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions" style="margin-top:14px;">
+          <button type="submit" class="fbtn" aria-label="Crear tasca">
+            <span class="shadow" aria-hidden="true"></span>
+            <span class="edge" aria-hidden="true"></span>
+            <span class="front">Crear</span>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <section id="task-list" class="card tasks-list" aria-live="polite" style="min-height:200px;">
+      <h2>Les meves tasques</h2>
+
+      <div class="task-placeholder">
+        <p>No tens tasques cadastrades. Crea la primera tasca al formulari.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <img id="logo" src="img/logo.png" alt="Fet logo peu">
+    </div>
+    <div class="footer-center">
+      <p>© Tots els drets reservats</p>
+    </div>
+
+    <div class="footer-right">
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><img src="img/Instagram_icon.png" alt="Instagram"></a>
+            <a href="https://www.twitter.com" target="_blank" aria-label="X"><img src="img/X_icon.svg.png" alt="X"></a>
+            <a href="https://www.telegram.org" target="_blank" aria-label="Telegram"><img src="img/Telegram_logo.svg.webp" alt="Telegram"></a>
+    </div>
+  </footer>
+  
+  <script type="module">
+    import { setupTaskForm, setupTaskList } from './firebase-client.js';
+
+     
+    function getQueryParam(name) {
+      try {
+        const url = new URL(window.location.href);
+        return url.searchParams.get(name);
+      } catch (e) {
+        return null;
+      }
+    }
+
+     
+    function showMethodFields(method) {
+      document.querySelectorAll('.method-fields').forEach(el => el.style.display = 'none');
+      if (!method) {
+        const mi = document.getElementById('task-method');
+        if (mi) mi.value = '';
+        return;
+      }
+      const el = document.querySelector('.method-' + method);
+      if (el) el.style.display = '';
+      const methodInput = document.getElementById('task-method');
+      if (methodInput) methodInput.value = method;
+    }
+
+    const allowed = ['pomodoro','srs','long'];
+    const requested = getQueryParam('method');
+    const method = allowed.includes(requested) ? requested : null;
+    showMethodFields(method);
+
+    if (method) {
+      const f = document.getElementById('task-form');
+      if (f) f.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+     
+    setupTaskForm();
+    setupTaskList();
+  </script>
+  <script type="module" src="./logout.js"></script>
+  <script type="module" src="./auth-guard.js"></script>
+  <script type="module" src="./adaptive-nav.js"></script>
+  <script type="module" src="./mobil-menu.js"></script>
+</body>
+</html>
