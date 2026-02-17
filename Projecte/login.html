@@ -95,39 +95,48 @@
     
   </footer>
 
+  <script type="module" src="./firebase-client.js"></script>
   <script type="module">
-  import { signUp, signIn, auth, onAuthStateChanged } from './firebase-client.js';
+    import { signUp, signIn, auth, onAuthStateChanged } from './firebase-client.js';
 
-   
-  onAuthStateChanged(auth, (user) => {
-    if (user) window.location.href = 'index.html';
-  });
+    // Check if already logged in on page load (before any interaction)
+    let initialCheck = true;
+    onAuthStateChanged(auth, (user) => {
+      console.log('[login] Auth state changed:', user ? 'logged in' : 'logged out');
+      if (initialCheck && user) {
+        console.log('[login] Already logged in, redirecting...');
+        window.location.href = 'index.html';
+      }
+      initialCheck = false;
+    });
 
-  document.getElementById('signup-btn').addEventListener('click', async () => {
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
-    try {
-      await signUp(email, password);
-      alert('Compte creat! Redirigint...');
-      window.location.href = 'index.html';
-    } catch (err) {
-      alert('Error creant compte: ' + err.message);
-    }
-  });
+    document.getElementById('signup-btn').addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      try {
+        await signUp(email, password);
+        alert('Compte creat! Redirigint...');
+        window.location.href = 'index.html';
+      } catch (err) {
+        alert('Error creant compte: ' + err.message);
+      }
+    });
 
-  document.getElementById('login-btn').addEventListener('click', async () => {
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
-    try {
-      await signIn(email, password);
-      alert('Benvingut! Redirigint...');
-      window.location.href = 'index.html';
-    } catch (err) {
-      alert('Error entrant: ' + err.message);
-    }
-  });
-</script> 
-<script type="module" src="./adaptive-nav.js"></script>
-<script type="module" src="./mobil-menu.js"></script>
+    document.getElementById('login-btn').addEventListener('click', async () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      try {
+        const userCredential = await signIn(email, password);
+        console.log('Login successful:', userCredential.user.uid);
+        alert('Benvingut! Redirigint...');
+        window.location.href = 'index.html';
+      } catch (err) {
+        console.error('Login error:', err);
+        alert('Error entrant: ' + err.message);
+      }
+    });
+  </script>
+  <script src="./adaptive-nav.js"></script>
+  <script src="./mobil-menu.js"></script>
 </body>
 </html>

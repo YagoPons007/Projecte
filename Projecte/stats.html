@@ -123,14 +123,11 @@
   <script type="module" src="./firebase-client.js"></script>
   <script type="module">
     import { setupStats } from './stats.js';
-
-    document.addEventListener('DOMContentLoaded', () => {
-      setupStats();
-    });
+    setupStats();
   </script>
   <script type="module" src="./logout.js"></script>
   <script type="module" src="./auth-guard.js"></script>
-  <script type="module" src="./adaptive-nav.js"></script>
-  <script type="module" src="./mobil-menu.js"></script>
+  <script src="./adaptive-nav.js"></script>
+  <script src="./mobil-menu.js"></script>
 </body>
 </html>

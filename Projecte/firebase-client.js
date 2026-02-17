@@ -2,6 +2,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 import {
   getAuth,
+  setPersistence,
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -38,6 +40,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+// Set auth persistence to local (survives browser restart)
+setPersistence(auth, browserLocalPersistence)
+  .then(() => console.log('[firebase-client] Persistence set to LOCAL'))
+  .catch(err => console.error('[firebase-client] Persistence error:', err));
 
   export async function signUp(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
@@ -167,17 +174,19 @@ export function setupTaskList() {
     }
 
     if (!user) {
-       
+      console.log('[setupTaskList] No user logged in');
       container.innerHTML = placeholderHTML;
       return;
     }
 
     const uid = user.uid;
+    console.log('[setupTaskList] Loading tasks for user:', uid);
     const tasksCol = collection(db, "users", uid, "tasks");
     const q = query(tasksCol, orderBy("createdAt", "desc"));
 
      
     unsubscribe = onSnapshot(q, (snapshot) => {
+      console.log('[setupTaskList] onSnapshot triggered, docs count:', snapshot?.docs?.length || 0);
       if (!snapshot || snapshot.empty) {
         container.innerHTML = placeholderHTML;
         return;
@@ -248,7 +257,17 @@ export function setupTaskList() {
       attachTaskHandlers(container);
     }, (err) => {
       console.error('onSnapshot tasks error:', err);
-      container.innerHTML = `<div class="task-placeholder"><p>Error carregant tasques.</p></div>`;
+      console.error('Error code:', err.code);
+      console.error('Error message:', err.message);
+      let errorMsg = 'Error carregant tasques.';
+      if (err.code === 'permission-denied') {
+        errorMsg = 'Error: No tens permisos per veure les tasques.';
+      } else if (err.code === 'failed-precondition') {
+        errorMsg = 'Error: Falta crear un índex a Firebase. Mira la consola per més detalls.';
+      } else if (err.message && err.message.includes('index')) {
+        errorMsg = 'Error: Falta un índex de Firestore. Mira la consola.';
+      }
+      container.innerHTML = `<div class="task-placeholder"><p>${errorMsg}</p><p style="font-size:0.8rem;color:#666;">(${err.code || 'unknown'})</p></div>`;
     });
   });
 
@@ -320,6 +339,32 @@ function escapeHtml(str) {
     .replaceAll("'",'&#039;');
 }
 
+
+window.auth = auth;
+window.onAuthStateChanged = onAuthStateChanged;
+window.db = db;
+window.signUp = signUp;
+window.signIn = signIn;
+window.doSignOut = doSignOut;
+window.setupProfileForm = setupProfileForm;
+window.setupTaskForm = setupTaskForm;
+window.setupTaskList = setupTaskList;
+window.addTimeToTask = addTimeToTask;
+window.markTaskCompleted = markTaskCompleted;
+
+// Firestore functions
+window.doc = doc;
+window.collection = collection;
+window.onSnapshot = onSnapshot;
+window.updateDoc = updateDoc;
+window.getDoc = getDoc;
+window.setDoc = setDoc;
+window.addDoc = addDoc;
+window.deleteDoc = deleteDoc;
+window.query = query;
+window.orderBy = orderBy;
+window.serverTimestamp = serverTimestamp;
+window.increment = increment;
 
 export { auth, onAuthStateChanged, db };
 export async function addTimeToTask(taskId, minutes) {

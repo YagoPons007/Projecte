@@ -161,10 +161,12 @@
     </div>
   </footer>
   
+  <script type="module" src="./firebase-client.js"></script>
+  <script type="module" src="./logout.js"></script>
+  <script type="module" src="./auth-guard.js"></script>
   <script type="module">
     import { setupTaskForm, setupTaskList } from './firebase-client.js';
 
-     
     function getQueryParam(name) {
       try {
         const url = new URL(window.location.href);
@@ -174,7 +176,6 @@
       }
     }
 
-     
     function showMethodFields(method) {
       document.querySelectorAll('.method-fields').forEach(el => el.style.display = 'none');
       if (!method) {
@@ -198,13 +199,10 @@
       if (f) f.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-     
     setupTaskForm();
     setupTaskList();
   </script>
-  <script type="module" src="./logout.js"></script>
-  <script type="module" src="./auth-guard.js"></script>
-  <script type="module" src="./adaptive-nav.js"></script>
-  <script type="module" src="./mobil-menu.js"></script>
+  <script src="./adaptive-nav.js"></script>
+  <script src="./mobil-menu.js"></script>
 </body>
 </html>

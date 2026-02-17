@@ -1,9 +1,7 @@
 import { auth, onAuthStateChanged, doSignOut } from './firebase-client.js';
 
- 
 const logoutBtn = document.getElementById('logout-btn');
 
- 
 onAuthStateChanged(auth, (user) => {
   if (!logoutBtn) return;
   if (user) {
